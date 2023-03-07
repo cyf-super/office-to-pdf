@@ -1,0 +1,72 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+@keyframes background-animate {
+    0% { 
+        background-position: 0% 0%; 
+    }
+    50% { 
+        background-position: 100% 100%; 
+    }
+    100% { 
+        background-position: 0% 0%; 
+    }
+}
+html {
+    /* background-image: linear-gradient(100deg, rgb(64, 158, 255), rgb(255, 167, 167)); */
+    background-size: 200%;
+    animation: background-animate 15s linear infinite;
+}
+body {
+    font-size: 14px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.file_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.upload_group {
+    margin-top: 20px;
+}
+.upload_group button {
+    display: inline-block;
+    width: 120px;
+    line-height: 38px;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 165, 63, 0.712);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+.upload_group button:hover {
+    background: rgb(247, 187, 22);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.upload_group input[type=file] {
+    display: none;
+}
+.file_group, .file_group th, .file_group td {
+    color: #333;
+    border: 1px solid #333;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px 30px;
+}
+.file_group tr td a {
+    color: #333;
+    text-decoration: none;
+}
+.file_group tr td a:hover {
+    text-decoration: underline;
+}
+.file_group tr th:last-child, .file_group tr td:last-child {
+    width: 400px;
+}

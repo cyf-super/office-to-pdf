@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>office_transform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="file_content">
+        <table class="file_group">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>文件名</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="upload_group">
+            <button class="upload-btn">上传文档</button>
+            <input type="file" class="upload-input" />
+          </div>
+    </div>
+    <script>
+      function getDom(ele) {
+        return document.querySelector(ele)
+      }
+      const baseUrl = 'http://localhost:3001'
+      const tbody = getDom('tbody')
+      const input = getDom('.upload-input')
+      const button = getDom('.upload-btn')
+
+      // 获取数据
+      fetch(`${baseUrl}/file-data`).then(res => {
+        res.json().then(fileObj => {
+          let tableData = ''
+          fileObj.data.forEach((item, index) => {
+            tableData += `
+            <tr>
+              <td>${index + 1}</td>
+              <td>
+                <a href="${item}" target="_blank">${item}</a>
+                </td>
+                </tr>
+                `
+              });
+              tbody.innerHTML = tableData
+            })
+          })
+      
+      
+      button.addEventListener('click', () => {
+        input.click()
+      })
+
+      input.addEventListener('change', (e) => {
+        var formData = new FormData()
+        formData.append('file', e.target.files[0])
+        fetch(`${baseUrl}/upload`, {
+          method: 'POST',
+          body: formData
+        }).then(res => {
+          res.text()
+        }).then(data => {
+          console.log(data);
+        })
+      })
+    </script>
+</body>
+</html>
